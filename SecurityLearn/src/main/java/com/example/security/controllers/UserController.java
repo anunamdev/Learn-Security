@@ -14,11 +14,19 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService ser;
+    @PostMapping("/{roleId}")
+    ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto,@PathVariable int roleId) {
+        UserDto user = ser.createUser(userDto,roleId);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
     @PostMapping
     ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         UserDto user = ser.createUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
+
     @GetMapping
     ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> allUser = ser.getAllUser();

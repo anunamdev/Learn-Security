@@ -17,4 +17,6 @@ public interface UserService {
 
     List<UserDto> getAllUser();
 
+    UserDto createUser(UserDto userDto, int roleId);
+
 }
